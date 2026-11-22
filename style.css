@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Vazirmatn:wght@300;400;700;900&display=swap');
+
+:root {
+    --bg-dark: #010a1f;
+    --bg-blue: #03265e;
+    --neon-blue: #00d2ff;
+    --neon-light: #7df9ff;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(0, 210, 255, 0.3);
+    --text-main: #ffffff;
+    --text-muted: #a0c4ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at center, var(--bg-blue) 0%, var(--bg-dark) 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* کانواس سه‌بعدی در پس‌زمینه */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* قرارگیری در پشت همه المان‌ها */
+    pointer-events: none; /* اجازه کلیک روی محتوا */
+}
+
+h1, h2, h3, .logo-text {
+    font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.neon-text {
+    color: var(--neon-light);
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(1, 10, 31, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+.logo-text span { color: var(--neon-blue); }
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--neon-light);
+    text-shadow: 0 0 8px var(--neon-blue);
+}
+
+.btn {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.4s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #0055ff, var(--neon-blue));
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 25px rgba(0, 210, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+}
+
+.btn-outline:hover {
+    background: var(--neon-blue);
+    color: var(--bg-dark);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+    font-family: 'Orbitron', sans-serif; 
+    /* افکت سه‌بعدی روی متن */
+    text-shadow: 0 0 10px var(--neon-blue), 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* Products Grid - افکت سه‌بعدی Tilt */
+.products-section {
+    padding: 50px;
+    position: relative;
+    z-index: 1;
+    perspective: 1000px; /* برای ایجاد عمق در کارت‌ها */
+}
+
+.products-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    transform-style: preserve-3d;
+}
+
+.product-card {
+    background: rgba(2, 20, 53, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: transform 0.1s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.product-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 210, 255, 0.2);
+    border-color: var(--neon-light);
+}
+
+.product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    /* تصویر کمی بیرون زده از کارت */
+    transform: translateZ(30px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.product-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    transform: translateZ(20px);
+}
+
+.product-price {
+    color: var(--neon-light);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    transform: translateZ(20px);
+}
+
+.product-card .btn {
+    transform: translateZ(20px);
+}
+
+/* Auth Pages */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    position: relative;
+    z-index: 1;
+    perspective: 1000px;
+}
+
+.auth-box {
+    background: rgba(2, 20, 53, 0.7);
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 40px rgba(0, 210, 255, 0.1);
+    transform-style: preserve-3d;
+}
+
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    transform: translateZ(30px);
+}
+
+.input-group {
+    margin-bottom: 20px;
+    transform: translateZ(20px);
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+.auth-btn {
+    width: 100%;
+    margin-top: 10px;
+    transform: translateZ(20px);
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.auth-switch a {
+    color: var(--neon-blue);
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 50px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+}
